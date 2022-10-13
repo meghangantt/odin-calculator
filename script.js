@@ -19,3 +19,20 @@ const operate = (operator, x, y) => {
     }
     return result;
 };
+
+const theDisplay = document.querySelector('.display');
+
+const numbers = document.querySelectorAll('.number');
+
+let lastDigit;
+let currentValue;
+
+numbers.forEach((number) => {
+    number.addEventListener('click', () => {
+        lastDigit = number.textContent;
+        theDisplay.textContent += lastDigit;
+        currentValue = +(theDisplay.textContent);
+    });
+});
+
+
