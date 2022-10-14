@@ -17,6 +17,7 @@ const operate = (operator, x, y) => {
     } else if (operator==="÷") {
         action = divide(x, y);
     }
+    needsClear = true;
     return action;
 };
 
@@ -32,7 +33,7 @@ let needsClear = false;
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
         if (needsClear) {
-            theDisplay.textContent = undefined;
+            clearDisplay();
             needsClear = false;
         };
         theDisplay.textContent += number.textContent;
@@ -45,15 +46,29 @@ const operations = document.querySelectorAll('.operator');
 operations.forEach((operation) => {
     operation.addEventListener('click', () => {
         operator = operation.textContent;
+        if (!(currentValue===undefined || prevValue===undefined)) {
+            theDisplay.textContent = operate(operator, prevValue, currentValue);
+        }
         prevValue = currentValue;
         currentValue = undefined;
         needsClear = true;
     });
 });
 
-const equals = document.querySelector('.equals');
+const equalsBtn = document.querySelector('.equals');
 
-equals.addEventListener('click', () => {
+equalsBtn.addEventListener('click', () => {
     theDisplay.textContent = operate(operator, prevValue, currentValue);
-    needsClear = true;
+});
+
+const clearBtn = document.querySelector('.clear');
+
+const clearDisplay = () => theDisplay.textContent = undefined;
+
+clearBtn.addEventListener('click', () => {
+    clearDisplay();
+    currentValue = undefined;
+    prevValue = undefined;
+    operator = undefined;
+    needsClear = false;
 });
