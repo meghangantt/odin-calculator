@@ -1,0 +1,22 @@
+body {
+    background-color: azure;
+}
+
+#calculator {
+    width: 30em;
+    background-color: rgb(156, 156, 156);
+    border: 5px outset black;
+    border-radius: 5px;
+    
+}
+
+.display {
+    background-color: rgb(224, 224, 224);
+    color: rgb(43, 43, 43);
+    font-family: 'Silkscreen', cursive;
+    text-align: right;
+}
+
+.btnContainer {
+    border: 3px solid darkgoldenrod;
+}
