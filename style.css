@@ -10,6 +10,9 @@ body {
     border-radius: 5px;
     margin: auto;
     margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
 }
 
 .display {
@@ -19,16 +22,20 @@ body {
     font-size: 35px;
     text-align: right;
     height: 15%;
+    flex: auto;
 }
 
 .btnContainer {
     display: flex;
+    flex: auto;
+    max-width: 99%;
     height: 82%;
     padding: 1%;
 }
 
 button {
-    display: block;
+    flex: auto;
+    min-width: 20px;
     font-size: 20px;
     color: rgb(80, 80, 80);
     font-family: 'Lato', sans-serif;
