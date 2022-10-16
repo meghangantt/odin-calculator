@@ -61,17 +61,17 @@ clearBtn.addEventListener('click', () => {
 });
 
 const operate = (operator, x, y) => {
-    let action;
+    let result;
     if (operator==="+") {
-        action = add(x, y);
+        result = add(x, y);
     } else if (operator==="-") {
-        action = subtract(x, y);
+        result = subtract(x, y);
     } else if (operator==="×") {
-        action = multiply(x, y);
+        result = multiply(x, y);
     } else if (operator==="÷") {
-        action = (currentValue==0) ? "haha no" : divide(x, y);
+        result = (currentValue==0) ? "haha no" : divide(x, y);
     }
     needsClear = true;
-    return action;
+    return Math.round((result + Number.EPSILON) * 100000000) / 100000000;
 };
 
