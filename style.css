@@ -30,7 +30,7 @@ body {
     flex: auto;
     max-width: 99%;
     height: 82%;
-    padding: 1%;
+    padding: .5%;
 }
 
 button {
