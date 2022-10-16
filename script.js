@@ -27,12 +27,14 @@ numbers.forEach((number) => {
 });
 
 const operations = document.querySelectorAll('.operator');
+let prevOperator;
 
 operations.forEach((operation) => {
     operation.addEventListener('click', () => {
+        prevOperator = operator;
         operator = operation.textContent;
         if (!(currentValue===undefined || prevValue===undefined)) {
-            theDisplay.textContent = operate(operator, prevValue, currentValue);
+            theDisplay.textContent = operate(prevOperator, prevValue, currentValue);
             prevValue = +(theDisplay.textContent);
         } else {
             prevValue = currentValue;
