@@ -35,6 +35,7 @@ button {
     border: 0;
     margin: 1%;
     border-radius: 5px;
+    background-color: rgb(240, 240, 240);
 }
 
 .numbers {
@@ -61,4 +62,12 @@ button {
 .multiply,
 .divide {
     background-color: rgb(138, 179, 255);
+}
+
+.equals {
+    background-color: rgb(229, 229, 92);
+}
+
+.clear {
+    background-color: rgb(244, 149, 149);
 }
