@@ -74,4 +74,3 @@ const operate = (operator, x, y) => {
     needsClear = true;
     return Math.round((result + Number.EPSILON) * 100000000) / 100000000;
 };
-
