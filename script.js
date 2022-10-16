@@ -1,9 +1,6 @@
 const add = (x, y) => x+y;
-
 const subtract = (x, y) => x-y;
-
 const multiply = (x, y) => x*y;
-
 const divide = (x, y) => x/y;
 
 let theDisplay = document.querySelector('.display');
@@ -13,6 +10,8 @@ const numbers = document.querySelectorAll('.number');
 let currentValue;
 let prevValue;
 let operator;
+
+const clearDisplay = () => theDisplay.textContent = undefined;
 let needsClear = false;
 
 numbers.forEach((number) => {
@@ -27,6 +26,7 @@ numbers.forEach((number) => {
 });
 
 const operations = document.querySelectorAll('.operator');
+
 let prevOperator;
 
 operations.forEach((operation) => {
@@ -50,18 +50,6 @@ equalsBtn.addEventListener('click', () => {
     theDisplay.textContent = operate(operator, prevValue, currentValue);
 });
 
-const clearBtn = document.querySelector('.clear');
-
-const clearDisplay = () => theDisplay.textContent = undefined;
-
-clearBtn.addEventListener('click', () => {
-    clearDisplay();
-    currentValue = undefined;
-    prevValue = undefined;
-    operator = undefined;
-    needsClear = false;
-});
-
 const operate = (operator, x, y) => {
     let result;
     if (operator==="+") {
@@ -76,3 +64,13 @@ const operate = (operator, x, y) => {
     needsClear = true;
     return Math.round((result + Number.EPSILON) * 100000000) / 100000000;
 };
+
+const clearBtn = document.querySelector('.clear');
+
+clearBtn.addEventListener('click', () => {
+    clearDisplay();
+    currentValue = undefined;
+    prevValue = undefined;
+    operator = undefined;
+    needsClear = false;
+});
