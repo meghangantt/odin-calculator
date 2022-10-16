@@ -6,21 +6,6 @@ const multiply = (x, y) => x*y;
 
 const divide = (x, y) => x/y;
 
-const operate = (operator, x, y) => {
-    let action;
-    if (operator==="+") {
-        action = add(x, y);
-    } else if (operator==="-") {
-        action = subtract(x, y);
-    } else if (operator==="×") {
-        action = multiply(x, y);
-    } else if (operator==="÷") {
-        action = divide(x, y);
-    }
-    needsClear = true;
-    return action;
-};
-
 let theDisplay = document.querySelector('.display');
 
 const numbers = document.querySelectorAll('.number');
@@ -72,3 +57,19 @@ clearBtn.addEventListener('click', () => {
     operator = undefined;
     needsClear = false;
 });
+
+const operate = (operator, x, y) => {
+    let action;
+    if (operator==="+") {
+        action = add(x, y);
+    } else if (operator==="-") {
+        action = subtract(x, y);
+    } else if (operator==="×") {
+        action = multiply(x, y);
+    } else if (operator==="÷") {
+        action = (currentValue==0) ? "haha no" : divide(x, y);
+    }
+    needsClear = true;
+    return action;
+};
+

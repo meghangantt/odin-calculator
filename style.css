@@ -3,20 +3,62 @@ body {
 }
 
 #calculator {
-    width: 30em;
+    width: 350px;
+    height: 350px;
     background-color: rgb(156, 156, 156);
-    border: 5px outset black;
+    border: 5px solid rgb(127, 127, 127);
     border-radius: 5px;
-    
+    margin: auto;
+    margin-top: 5%;
 }
 
 .display {
     background-color: rgb(224, 224, 224);
-    color: rgb(43, 43, 43);
-    font-family: 'Silkscreen', cursive;
+    color: rgb(60, 60, 60);
+    font-family: 'Oswald', sans-serif;
+    font-size: 35px;
     text-align: right;
+    height: 15%;
 }
 
 .btnContainer {
-    border: 3px solid darkgoldenrod;
+    display: flex;
+    height: 82%;
+    padding: 1%;
+}
+
+button {
+    display: block;
+    font-size: 20px;
+    color: rgb(80, 80, 80);
+    font-family: 'Lato', sans-serif;
+    border: 0;
+    margin: 1%;
+    border-radius: 5px;
+}
+
+.numbers {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 75%;
+    height: auto;
+    margin-right: 1%;
+}
+
+.zero {
+    width: 300%;
+    background-color: rgb(249, 202, 114);
+}
+
+.operators {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+    width: 25%;
+}
+
+.add,
+.subtract,
+.multiply,
+.divide {
+    background-color: rgb(138, 179, 255);
 }
