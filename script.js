@@ -33,8 +33,10 @@ operations.forEach((operation) => {
         operator = operation.textContent;
         if (!(currentValue===undefined || prevValue===undefined)) {
             theDisplay.textContent = operate(operator, prevValue, currentValue);
+            prevValue = +(theDisplay.textContent);
+        } else {
+            prevValue = currentValue;
         }
-        prevValue = currentValue;
         currentValue = undefined;
         needsClear = true;
     });
