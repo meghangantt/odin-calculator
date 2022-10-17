@@ -19,26 +19,27 @@ let needsClear = false;
 
 const clearDisplay = () => theDisplay.textContent = undefined;
 
-const inputNum = (number) => {
+const inputNum = (input) => {
     if (needsClear) {
         clearDisplay();
         needsClear = false;
     };
-    if (!(number.textContent==="." && theDisplay.textContent.includes("."))) {
-        theDisplay.textContent += number.textContent;
+    if (!(input==="." && theDisplay.textContent.includes("."))) {
+        theDisplay.textContent += input;
         currentValue = +(theDisplay.textContent);
     };
 };
 
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
-        inputNum(number);
+        let input = number.textContent;
+        inputNum(input);
     });
 });
 
-const inputOperator = (operation) => {
+const inputOperator = (input) => {
     prevOperator = operator;
-    operator = operation.textContent;
+    operator = input;
     if (!(currentValue===undefined || prevValue===undefined)) {
         operate(prevOperator, prevValue, currentValue);
         prevValue = +(theDisplay.textContent);
@@ -51,7 +52,8 @@ const inputOperator = (operation) => {
 
 operations.forEach((operation) => {
     operation.addEventListener('click', () => {
-       inputOperator(operation);
+        let input = operation.textContent;
+        inputOperator(input);
     });
 });
 
@@ -64,7 +66,7 @@ const operate = (operator, x, y) => {
     } else if (operator==="×") {
         result = multiply(x, y);
     } else if (operator==="÷") {
-        result = (currentValue==0) ? "haha no" : divide(x, y);
+        result = (currentValue==0) ? 'haha no' : divide(x, y);
     }
     needsClear = true;
     theDisplay.textContent = Math.round((result + Number.EPSILON) * 100000000) / 100000000;
@@ -106,4 +108,30 @@ const backspace = () => {
 
 backBtn.addEventListener('click', () => {
     backspace();
+});
+
+/*Keyboard support - a doozy*/
+document.addEventListener('keydown', (keyInput) => {
+    const numType = '.0123456789';
+    const opsType = '+-*x/';
+    let input = keyInput.key.toLowerCase();
+    if (numType.includes(input)) {
+        inputNum(input);
+    } else if (opsType.includes(input)) {
+        if (input==='+') {
+            inputOperator('+');
+        } else if (input==='-') {
+            inputOperator('-');
+        } else if (input==='*' || input==='x') {
+            inputOperator('×');
+        } else {
+            inputOperator('÷');
+        }
+    } else if (input==='=' || input==='enter') {
+        operate(operator, prevValue, currentValue);
+    } else if (input.toLowerCase()==='a' || input==='c' || input=='escape') {
+        clearMem();
+    } else if (input==='backspace' || input==='b' || input==='d') {
+        backspace();
+    }
 });
