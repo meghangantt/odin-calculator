@@ -46,6 +46,13 @@ operations.forEach((operation) => {
     });
 });
 
+const plusMinusBtn = document.querySelector('.plusminus');
+
+plusMinusBtn.addEventListener('click', () => {
+    currentValue = -1 * +(theDisplay.textContent);
+    theDisplay.textContent = currentValue;
+})
+
 const equalsBtn = document.querySelector('.equals');
 
 equalsBtn.addEventListener('click', () => {
