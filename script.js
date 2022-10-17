@@ -5,7 +5,7 @@ const divide = (x, y) => x/y;
 
 const theDisplay = document.querySelector('.display');
 const numbers = document.querySelectorAll('.number');
-const operations = document.querySelectorAll('.operator');
+const operators = document.querySelectorAll('.operator');
 const plusMinusBtn = document.querySelector('.plusminus');
 const equalsBtn = document.querySelector('.equals');
 const clearBtn = document.querySelector('.clear');
@@ -50,9 +50,9 @@ const inputOperator = (input) => {
     needsClear = true;
 };
 
-operations.forEach((operation) => {
-    operation.addEventListener('click', () => {
-        let input = operation.textContent;
+operators.forEach((operator) => {
+    operator.addEventListener('click', () => {
+        let input = operator.textContent;
         inputOperator(input);
     });
 });
