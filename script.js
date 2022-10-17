@@ -20,8 +20,10 @@ numbers.forEach((number) => {
             clearDisplay();
             needsClear = false;
         };
-        theDisplay.textContent += number.textContent;
-        currentValue = +(theDisplay.textContent);
+        if (!(number.textContent==="." && theDisplay.textContent.includes("."))) {
+            theDisplay.textContent += number.textContent;
+            currentValue = +(theDisplay.textContent);
+        };
     });
 });
 
