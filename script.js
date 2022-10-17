@@ -69,7 +69,8 @@ const operate = (operator, x, y) => {
         result = (currentValue==0) ? 'haha no' : divide(x, y);
     }
     needsClear = true;
-    theDisplay.textContent = Math.round((result + Number.EPSILON) * 100000000) / 100000000;
+    result = Math.round((result + Number.EPSILON) * 100000000) / 100000000;
+    theDisplay.textContent = isNaN(result) ? 'ERROR' : result;
 };
 
 equalsBtn.addEventListener('click', () => {
