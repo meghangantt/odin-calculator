@@ -69,10 +69,27 @@ const operate = (operator, x, y) => {
 
 const clearBtn = document.querySelector('.clear');
 
-clearBtn.addEventListener('click', () => {
-    clearDisplay();
+const clearMem = () => {
     currentValue = undefined;
     prevValue = undefined;
     operator = undefined;
     needsClear = false;
+}
+
+clearBtn.addEventListener('click', () => {
+    clearDisplay();
+    clearMem();
+});
+
+const backBtn = document.querySelector('.backspace');
+
+backBtn.addEventListener('click', () => {
+    if (!needsClear) {
+        theDisplay.textContent = theDisplay.textContent.slice(0, -1);
+        currentValue = +(theDisplay.textContent);
+    } else {
+        clearDisplay();
+        clearMem();
+    }
+    
 });
