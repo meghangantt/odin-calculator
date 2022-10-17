@@ -70,6 +70,7 @@ const operate = (operator, x, y) => {
 const clearBtn = document.querySelector('.clear');
 
 const clearMem = () => {
+    clearDisplay();
     currentValue = undefined;
     prevValue = undefined;
     operator = undefined;
@@ -77,7 +78,6 @@ const clearMem = () => {
 }
 
 clearBtn.addEventListener('click', () => {
-    clearDisplay();
     clearMem();
 });
 
@@ -88,7 +88,6 @@ backBtn.addEventListener('click', () => {
         theDisplay.textContent = theDisplay.textContent.slice(0, -1);
         currentValue = +(theDisplay.textContent);
     } else {
-        clearDisplay();
         clearMem();
     }
     
