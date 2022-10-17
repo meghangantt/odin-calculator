@@ -3,60 +3,56 @@ const subtract = (x, y) => x-y;
 const multiply = (x, y) => x*y;
 const divide = (x, y) => x/y;
 
-let theDisplay = document.querySelector('.display');
-
+const theDisplay = document.querySelector('.display');
 const numbers = document.querySelectorAll('.number');
+const operations = document.querySelectorAll('.operator');
+const plusMinusBtn = document.querySelector('.plusminus');
+const equalsBtn = document.querySelector('.equals');
+const clearBtn = document.querySelector('.clear');
+const backBtn = document.querySelector('.backspace');
 
 let currentValue;
 let prevValue;
 let operator;
+let prevOperator;
+let needsClear = false;
 
 const clearDisplay = () => theDisplay.textContent = undefined;
-let needsClear = false;
+
+const inputNum = (number) => {
+    if (needsClear) {
+        clearDisplay();
+        needsClear = false;
+    };
+    if (!(number.textContent==="." && theDisplay.textContent.includes("."))) {
+        theDisplay.textContent += number.textContent;
+        currentValue = +(theDisplay.textContent);
+    };
+};
 
 numbers.forEach((number) => {
     number.addEventListener('click', () => {
-        if (needsClear) {
-            clearDisplay();
-            needsClear = false;
-        };
-        if (!(number.textContent==="." && theDisplay.textContent.includes("."))) {
-            theDisplay.textContent += number.textContent;
-            currentValue = +(theDisplay.textContent);
-        };
+        inputNum(number);
     });
 });
 
-const operations = document.querySelectorAll('.operator');
-
-let prevOperator;
+const inputOperator = (operation) => {
+    prevOperator = operator;
+    operator = operation.textContent;
+    if (!(currentValue===undefined || prevValue===undefined)) {
+        operate(prevOperator, prevValue, currentValue);
+        prevValue = +(theDisplay.textContent);
+    } else {
+        prevValue = currentValue;
+    }
+    currentValue = undefined;
+    needsClear = true;
+};
 
 operations.forEach((operation) => {
     operation.addEventListener('click', () => {
-        prevOperator = operator;
-        operator = operation.textContent;
-        if (!(currentValue===undefined || prevValue===undefined)) {
-            theDisplay.textContent = operate(prevOperator, prevValue, currentValue);
-            prevValue = +(theDisplay.textContent);
-        } else {
-            prevValue = currentValue;
-        }
-        currentValue = undefined;
-        needsClear = true;
+       inputOperator(operation);
     });
-});
-
-const plusMinusBtn = document.querySelector('.plusminus');
-
-plusMinusBtn.addEventListener('click', () => {
-    currentValue = -1 * +(theDisplay.textContent);
-    theDisplay.textContent = currentValue;
-})
-
-const equalsBtn = document.querySelector('.equals');
-
-equalsBtn.addEventListener('click', () => {
-    theDisplay.textContent = operate(operator, prevValue, currentValue);
 });
 
 const operate = (operator, x, y) => {
@@ -71,10 +67,21 @@ const operate = (operator, x, y) => {
         result = (currentValue==0) ? "haha no" : divide(x, y);
     }
     needsClear = true;
-    return Math.round((result + Number.EPSILON) * 100000000) / 100000000;
+    theDisplay.textContent = Math.round((result + Number.EPSILON) * 100000000) / 100000000;
 };
 
-const clearBtn = document.querySelector('.clear');
+equalsBtn.addEventListener('click', () => {
+    operate(operator, prevValue, currentValue);
+});
+
+const changeSign = () => {
+    currentValue = -1 * +(theDisplay.textContent);
+    theDisplay.textContent = currentValue;
+};
+
+plusMinusBtn.addEventListener('click', () => {
+    changeSign();
+});
 
 const clearMem = () => {
     clearDisplay();
@@ -88,14 +95,15 @@ clearBtn.addEventListener('click', () => {
     clearMem();
 });
 
-const backBtn = document.querySelector('.backspace');
-
-backBtn.addEventListener('click', () => {
+const backspace = () => {
     if (!needsClear) {
         theDisplay.textContent = theDisplay.textContent.slice(0, -1);
         currentValue = +(theDisplay.textContent);
     } else {
         clearMem();
     }
-    
+};
+
+backBtn.addEventListener('click', () => {
+    backspace();
 });
