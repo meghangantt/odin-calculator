@@ -6,7 +6,7 @@ body {
     width: 350px;
     height: 350px;
     background-color: rgb(156, 156, 156);
-    border: 5px solid rgb(127, 127, 127);
+    border:5px solid rgb(60, 60, 60);
     border-radius: 10px;
     margin: auto;
     margin-top: 5%;
@@ -45,6 +45,7 @@ button {
     margin: 1%;
     border-radius: 5px;
     background-color: rgb(240, 240, 240);
+    border:1px solid rgb(60, 60, 60);
 }
 
 .numbers {
